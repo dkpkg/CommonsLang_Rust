@@ -81,3 +81,13 @@ object keeps the upstream `COPYRIGHT` and `LICENSE-*` files.
   %% actual_version("2.4.3.25")
   'actual_version'
   '2.4.3.25'
+
+## Assets
+
+### CommonsLang_Rust.Apparatus@1.0.0
+
+  % unified.asset { name="BuildStaticLibSh", file="assets/cargo/build-staticlib.sh" }
+  \dk.asset(byteSize: "8066", checksum: (sha256: "454884dc63b7f00758592e01eac0c246df003659a0886b7b1834985a176f3b32"))\;
+
+  % unified.asset { name="BuildStaticLibPs1", file="assets/cargo/build-staticlib.ps1" }
+  \dk.asset(byteSize: "9034", checksum: (sha256: "0aff524c9f868e7cb7e595a85d78939fcb1ddef867821454cb5fb6ec4b5e3f69"))\;
