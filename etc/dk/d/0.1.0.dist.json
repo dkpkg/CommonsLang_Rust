@@ -1,0 +1,32 @@
+{
+  "continuations": {
+    "attestation": {
+      "openbsd_signify": {
+        "signature": "untrusted comment: signed by key b0d864dae69ebcf4\nRWSw2GTa5p689MQ8bNKdjt7YM3BIxEUkpt1i6UsiyWm0G4BfGBA75TlIBSh2oBjh4AKjqWQHc+cWSkOeUvby+BUW4mihGSZe9gs=\n"
+      }
+    },
+    "continuations_to_sign": {
+      "0.2": {
+        "application": { "name": "dk0", "version": "2.4.3+rev-25" },
+        "openbsd_signify": {
+          "public_key": "untrusted comment: CommonsLang_Rust-0.2\nRWQU6djHtnEVrAAlX+XXMBjlNFDK4z8bQTdnRWGt5DVsq52bzYD14oky\n"
+        }
+      },
+      "1.0": {
+        "application": { "name": "dk0", "version": "2.4.3+rev-25" },
+        "openbsd_signify": {
+          "public_key": "untrusted comment: CommonsLang_Rust-1.0\nRWTghjUKfxIYdv8muJOyE8iiZz4aZYE/kGSptkLbWRb+mA9ztIGRq3UJ\n"
+        }
+      }
+    }
+  },
+  "id": "CommonsLang_Rust@0.1.0",
+  "license": { "spdx": "Apache-2.0" },
+  "producer": {
+    "application": { "name": "dk0", "version": "2.4.3+rev-25" },
+    "github_slsa_v1_l2": { "repository": "dkpkg/CommonsLang_Rust" },
+    "openbsd_signify": {
+      "public_key": "untrusted comment: CommonsLang_Rust-0.1\nRWSw2GTa5p689OBQs9TJhoVZr5xrOH3nfC8DPS/Undv8I6BvoU1ymFT/\n"
+    }
+  }
+}
