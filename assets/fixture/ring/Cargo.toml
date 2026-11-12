@@ -1,0 +1,6 @@
+[workspace]
+resolver = "2"
+members = ["ringlib"]
+
+[profile.release]
+panic = "abort"

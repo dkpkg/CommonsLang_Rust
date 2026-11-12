@@ -1,0 +1,129 @@
+// The crates.io crates of assets/fixture/ring/Cargo.lock, for CommonsLang_Rust.Cargo.F_StaticLib.
+// Written by CommonsLang_Rust.CargoLock.Bundle@1.0.0. Regenerate it whenever
+// Cargo.lock changes.
+{
+  "$schema": "https://diskuv.com/dk/schema/dk-value-1.0.json",
+  "schema_version": { "major": 1, "minor": 0 },
+  "bundles": [
+    {
+      "id": "CommonsLang_Rust.Fixture.Crates.Bundle@1.0.0",
+      "listing": { "origins": [ { "name": "crates-io", "mirrors": [ "https://static.crates.io/crates" ] } ] },
+      "assets": [
+        {
+          "path": "cc/cc-1.11.1.crate",
+          "origin": "crates-io",
+          "size": 150373,
+          "checksum": { "sha256": "4ff2a8126fff0f8c839080d619675a585e61720bb12d2baceae45769fd66f155" }
+        },
+        {
+          "path": "cfg-if/cfg-if-1.0.5.crate",
+          "origin": "crates-io",
+          "size": 9578,
+          "checksum": { "sha256": "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600" }
+        },
+        {
+          "path": "find-msvc-tools/find-msvc-tools-0.1.15.crate",
+          "origin": "crates-io",
+          "size": 31634,
+          "checksum": { "sha256": "1c66915cc5391097de7a2b0b972e8505aa33c0df401fd3a6811dbdb32881ba48" }
+        },
+        {
+          "path": "getrandom/getrandom-0.2.17.crate",
+          "origin": "crates-io",
+          "size": 40780,
+          "checksum": { "sha256": "ff2abc00be7fca6ebc474524697ae276ad847ad0a6b3faa4bcb027e9a4614ad0" }
+        },
+        {
+          "path": "libc/libc-0.2.191.crate",
+          "origin": "crates-io",
+          "size": 855401,
+          "checksum": { "sha256": "65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a" }
+        },
+        {
+          "path": "ring/ring-0.17.14.crate",
+          "origin": "crates-io",
+          "size": 1502610,
+          "checksum": { "sha256": "a4689e6c2294d81e88dc6261c768b63bc4fcdb852be6d1352498b114f61383b7" }
+        },
+        {
+          "path": "shlex/shlex-2.0.1.crate",
+          "origin": "crates-io",
+          "size": 19332,
+          "checksum": { "sha256": "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba" }
+        },
+        {
+          "path": "untrusted/untrusted-0.9.0.crate",
+          "origin": "crates-io",
+          "size": 14447,
+          "checksum": { "sha256": "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1" }
+        },
+        {
+          "path": "wasi/wasi-0.11.1+wasi-snapshot-preview1.crate",
+          "origin": "crates-io",
+          "size": 28477,
+          "checksum": { "sha256": "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b" }
+        },
+        {
+          "path": "windows-sys/windows-sys-0.52.0.crate",
+          "origin": "crates-io",
+          "size": 2576877,
+          "checksum": { "sha256": "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d" }
+        },
+        {
+          "path": "windows-targets/windows-targets-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 6403,
+          "checksum": { "sha256": "9b724f72796e036ab90c1021d4780d4d3d648aca59e491e6b98e725b84e99973" }
+        },
+        {
+          "path": "windows_aarch64_gnullvm/windows_aarch64_gnullvm-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 435718,
+          "checksum": { "sha256": "32a4622180e7a0ec044bb555404c800bc9fd9ec262ec147edd5989ccd0c02cd3" }
+        },
+        {
+          "path": "windows_aarch64_msvc/windows_aarch64_msvc-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 832615,
+          "checksum": { "sha256": "09ec2a7bb152e2252b53fa7803150007879548bc709c039df7627cabbd05d469" }
+        },
+        {
+          "path": "windows_i686_gnu/windows_i686_gnu-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 880402,
+          "checksum": { "sha256": "8e9b5ad5ab802e97eb8e295ac6720e509ee4c243f69d781394014ebfe8bbfa0b" }
+        },
+        {
+          "path": "windows_i686_gnullvm/windows_i686_gnullvm-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 475940,
+          "checksum": { "sha256": "0eee52d38c090b3caa76c563b86c3a4bd71ef1a819287c19d586d7334ae8ed66" }
+        },
+        {
+          "path": "windows_i686_msvc/windows_i686_msvc-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 901163,
+          "checksum": { "sha256": "240948bc05c5e7c6dabba28bf89d89ffce3e303022809e73deaefe4f6ec56c66" }
+        },
+        {
+          "path": "windows_x86_64_gnu/windows_x86_64_gnu-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 836363,
+          "checksum": { "sha256": "147a5c80aabfbf0c7d901cb5895d1de30ef2907eb21fbbab29ca94c5b08b1a78" }
+        },
+        {
+          "path": "windows_x86_64_gnullvm/windows_x86_64_gnullvm-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 435707,
+          "checksum": { "sha256": "24d5b23dc417412679681396f2b49f3de8c1473deb516bd34410872eff51ed0d" }
+        },
+        {
+          "path": "windows_x86_64_msvc/windows_x86_64_msvc-0.52.6.crate",
+          "origin": "crates-io",
+          "size": 832564,
+          "checksum": { "sha256": "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec" }
+        }
+      ]
+    }
+  ]
+}

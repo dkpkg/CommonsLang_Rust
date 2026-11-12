@@ -1,0 +1,33 @@
+# Distribution for CommonsLang_Rust (Darwin_arm64)
+
+Builds the Rust toolchain objects for the `Darwin_arm64` slot and proves them by building a
+static library that uses ring's C and assembly.
+
+## rustc, cargo and the host standard library
+
+  $ run-function CommonsLang_Rust.Host.Files@1.99.1 -d ${RUNTIME}/host-Darwin_arm64 slot=Release.Darwin_arm64
+  \test(pass)
+
+## The standard library for the target
+
+  $ run-function CommonsLang_Rust.Std.Files@1.99.1 -d ${RUNTIME}/std slot=Release.Darwin_arm64
+  \test(pass)
+
+## The CargoLock dialog (author time)
+
+Ships the `CommonsLang_Rust.CargoLock.Bundle` dialog, which writes a crates bundle from a
+`Cargo.lock`.
+
+  $ run-function CommonsLang_Rust.CargoLock.Export@1.0.0 -f ${RUNTIME}/CargoLock.Export.zip
+  \test(pass)
+
+## Usage: a static library that uses ring
+
+`assets/fixture/ring` is a Cargo workspace whose `ringlib` crate calls ring's SHA-256.
+Its crates bundle came from the CargoLock dialog. cargo builds it offline.
+
+  $ run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.0 -d ${RUNTIME}/ringlib
+  >   modver=CommonsLang_Rust.Fixture.RingLib@1.0.0
+  >   srcasset=CommonsLang_Rust.Apparatus.RingFixture@1.0.0 srcpath=assets/fixture/ring
+  >   crates=CommonsLang_Rust.Fixture.Crates.Bundle@1.0.0 package=ringlib
+  \test(pass)

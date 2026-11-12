@@ -1,0 +1,12 @@
+[package]
+name = "ringlib"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.91"
+publish = false
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+ring = "=0.17.14"

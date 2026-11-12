@@ -91,3 +91,6 @@ object keeps the upstream `COPYRIGHT` and `LICENSE-*` files.
 
   % unified.asset { name="BuildStaticLibPs1", file="assets/cargo/build-staticlib.ps1" }
   \dk.asset(byteSize: "9034", checksum: (sha256: "0aff524c9f868e7cb7e595a85d78939fcb1ddef867821454cb5fb6ec4b5e3f69"))\;
+
+  % unified.asset { name="RingFixture", dir="assets/fixture/ring" }
+  \dk.asset(byteSize: "2595", checksum: (sha256: "875cc143f6775c7834b038b2ddaf813e251525abbb2ab9c3217ae1106a6e6404"))\;
