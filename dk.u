@@ -18,13 +18,14 @@ It supports six target slots: `Darwin_arm64`, `Darwin_x86_64`, `Linux_x86_64`,
 1. Write the crates bundle for your workspace's `Cargo.lock`:
 
    ```sh
-   ./dk0 --trust-local-caps write dialog CommonsLang_Rust.CargoLock.Bundle@1.0.0 \
+   ./dk0 dialog CommonsLang_Rust.CargoLock.Bundle@1.0.0 \
      lock=rust/Cargo.lock out=etc/dk/v/MyLib.Crates.Bundle.values.jsonc \
      id=MyLib.Crates.Bundle@1.0.0
    ```
 
-   The dialog needs a dk0 that can fill in crate sizes from a dialog. Until that
-   dk0 is released, the dialog stops with an error that says so.
+   dk0 asks for permission to write the bundle file. The dialog downloads each
+   crate once to fill in its size, and needs a dk0 with
+   `request.ui.fixbundle`.
 
 2. Build the static library for a slot:
 

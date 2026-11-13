@@ -1,15 +1,19 @@
 -- CommonsLang_Rust.CargoLock -- author time: turn a Cargo.lock into a dk bundle of
 -- the workspace's crates.io crates, for CommonsLang_Rust.Cargo.F_StaticLib.
 --
---   ./dk0 --trust-local-caps write dialog CommonsLang_Rust.CargoLock.Bundle@1.0.0
+--   ./dk0 dialog CommonsLang_Rust.CargoLock.Bundle@1.0.0
 --     lock=PATH/Cargo.lock out=etc/dk/v/<Lib>.Crates.Bundle.values.jsonc
 --     id=<Lib>.Crates.Bundle@<version>
 --
+-- dk0 asks for permission to write the file. In this repository, where the
+-- package is local, add --trust-local-caps write --trust-local-package
+-- CommonsLang_Rust to grant it without the prompt.
+--
 -- Cargo.lock records each crate's sha256 but not its size, and a dk bundle needs
--- both. Filling in the sizes waits on a dk0 feature: an autofix of a values file
--- from Lua that fixes every asset of a bundle in one call and keeps the file's
--- comments (requested from the build session, MAC-77). Until then the dialog stops
--- with an error after it parses the lock. It never runs curl or a child dk0.
+-- both. The dialog writes the bundle with a size of 0 for each crate, then asks
+-- dk0 to fill in the sizes with request.ui.fixbundle in "size" mode. dk0
+-- downloads each crate with its own transport, and fails a crate whose sha256
+-- differs from Cargo.lock. The dialog never runs curl or a child dk0.
 --
 -- Each asset is static.crates.io/crates/<name>/<name>-<version>.crate with the
 -- sha256 Cargo.lock records. The build checks it twice: dk checks the bundle's
@@ -120,16 +124,16 @@ function CommonsLang_Rust_CargoLock.crates(pkgs, lockpath)
 end
 
 -- The bundle as JSON text, one asset per crates.io crate.
-function CommonsLang_Rust_CargoLock.bundle_json(id, crates, sizes, lockpath)
+-- Each size is 0 until request.ui.fixbundle fills it in.
+function CommonsLang_Rust_CargoLock.bundle_json(id, crates, lockpath)
   local H = CommonsLang_Rust_CargoLock
   local assets = {}
   local i = 1
   while crates[i] do
     local c = crates[i]
-    local size = assert(sizes[c.path], "no size for " .. c.path)
     table.insert(assets, string.format(
-      "        {\n          \"path\": \"%s\",\n          \"origin\": \"crates-io\",\n          \"size\": %s,\n          \"checksum\": { \"sha256\": \"%s\" }\n        }",
-      c.path, size, c.checksum))
+      "        {\n          \"path\": \"%s\",\n          \"origin\": \"crates-io\",\n          \"size\": 0,\n          \"checksum\": { \"sha256\": \"%s\" }\n        }",
+      c.path, c.checksum))
     i = i + 1
   end
   local body = ""
@@ -163,18 +167,26 @@ function uirules.Bundle(command, request)
   local id = assert(request.user.id, "please provide id=<Lib>.Crates.Bundle@<version>")
   local text = assert(request.ui.readfile { path = lockpath })
   local crates = H.crates(H.parse(text), lockpath)
-  local count = 0
-  while crates[count + 1] do count = count + 1 end
-  error(string.format(
-    "%s has %d crates.io crates, but writing their bundle needs each crate's size, and this dk0 cannot fill sizes from a dialog yet (the Lua autofix requested in MAC-77)",
-    lockpath, count))
-  local json = H.bundle_json(id, crates, {}, lockpath)
+  local json = H.bundle_json(id, crates, lockpath)
   local meta = request.ui.checksum { path = out }
   local expected = "false"
   if meta and meta.sha256 then expected = meta.sha256 end
   local ok, written = request.ui.writefile { path = out, content = json, expected_sha256 = expected }
   assert(ok, "could not write `" .. out .. "`: " .. tostring(written))
-  print("wrote " .. tostring(written))
+  local outcome = assert(request.ui.fixbundle { file = out, bundle = id, fix = "size" })
+  local failed = outcome.failed
+  if failed[1] then
+    local lines = ""
+    local k = 1
+    while failed[k] do
+      lines = lines .. "\n  " .. failed[k].path .. ": " .. failed[k].reason
+      k = k + 1
+    end
+    error(string.format("could not fill in the size of these crates in `%s`:%s", out, lines))
+  end
+  local count = 0
+  while outcome.fixed[count + 1] do count = count + 1 end
+  print(string.format("wrote %s with the sizes of %d crates", tostring(written), count))
   return { submit = {} }
 end
 
