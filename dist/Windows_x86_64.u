@@ -34,3 +34,4 @@ Its crates bundle came from the CargoLock dialog. cargo builds it offline.
   >   srcasset=CommonsLang_Rust.Apparatus.RingFixture@1.0.0 srcpath=assets/fixture/ring
   >   crates=CommonsLang_Rust.Fixture.Crates.Bundle@1.0.0 package=ringlib
   \test(pass)
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "op37o4wpblrxi5oerfvz6exdvsoy3od6hfpy7fpooe3s3qsvfctxa")\;
