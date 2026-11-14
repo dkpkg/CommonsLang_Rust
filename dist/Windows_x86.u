@@ -7,11 +7,13 @@ static library that uses ring's C and assembly. It runs on a `Windows_x86_64` ho
 
   $ run-function CommonsLang_Rust.Host.Files@1.99.1 -d ${RUNTIME}/host-Windows_x86_64 slot=Release.Windows_x86_64
   \test(pass)
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "oa4vlifayugzk3zzmveockcakjrozedai2olrvkpoewhf7e6kco2a")\;
 
 ## The standard library for the target
 
   $ run-function CommonsLang_Rust.Std.Files@1.99.1 -d ${RUNTIME}/std slot=Release.Windows_x86
   \test(pass)
+  \dk.object(abi: "Release.Windows_x86", value-id: "opt65lnmsd3nmnuopyyli6v2ujsug35cb2ri6piubiou3axb7jhlq")\;
 
 ## The CargoLock dialog (author time)
 
@@ -20,6 +22,7 @@ Ships the `CommonsLang_Rust.CargoLock.Bundle` dialog, which writes a crates bund
 
   $ run-function CommonsLang_Rust.CargoLock.Export@1.0.0 -f ${RUNTIME}/CargoLock.Export.zip
   \test(pass)
+  \dk.object(abi: "Release.Windows_x86_64", value-id: "ozcnbjwhhregeyql7trte23sku4p2e77epnxghtzwfq4ihhgmjfgq")\;
 
 ## Usage: a static library that uses ring
 
