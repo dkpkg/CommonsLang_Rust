@@ -58,9 +58,15 @@ try {
   # The Host object leaves out rustc/lib/rustlib, and Copy-Item -Recurse into a missing
   # folder would rename the copy instead of nesting it.
   New-Item -ItemType Directory -Force -Path $rustlib | Out-Null
-  Copy-Item -Recurse -Path (Join-Path $opt['host'] "std\rust-std-$rustver-$hosttriple\rust-std-$hosttriple\lib\rustlib\$hosttriple") -Destination $rustlib
+  # rustc already made lib\rustlib\<host triple> on Windows, and Copy-Item -Recurse of a folder
+  # onto an existing folder fails, so merge the contents of each standard library instead.
+  $hostlib = Join-Path $rustlib $hosttriple
+  New-Item -ItemType Directory -Force -Path $hostlib | Out-Null
+  Copy-Item -Recurse -Force -Path (Join-Path $opt['host'] "std\rust-std-$rustver-$hosttriple\rust-std-$hosttriple\lib\rustlib\$hosttriple\*") -Destination $hostlib
   if ($targettriple -ne $hosttriple) {
-    Copy-Item -Recurse -Path (Join-Path $opt['std'] "rust-std-$rustver-$targettriple\rust-std-$targettriple\lib\rustlib\$targettriple") -Destination $rustlib
+    $targetlib = Join-Path $rustlib $targettriple
+    New-Item -ItemType Directory -Force -Path $targetlib | Out-Null
+    Copy-Item -Recurse -Force -Path (Join-Path $opt['std'] "rust-std-$rustver-$targettriple\rust-std-$targettriple\lib\rustlib\$targettriple\*") -Destination $targetlib
   }
 
   # 2. The vendored sources, with the .cargo-checksum.json cargo needs for a
