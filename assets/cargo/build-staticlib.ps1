@@ -47,6 +47,16 @@ $work = Join-Path ([IO.Path]::GetTempPath()) ('dkrust.' + [Guid]::NewGuid().ToSt
 New-Item -ItemType Directory -Path $work | Out-Null
 $utf8 = New-Object Text.UTF8Encoding($false)
 
+# The lowercase hex sha256 of a file. Get-FileHash lives in the script part of
+# Microsoft.PowerShell.Utility, which Windows PowerShell cannot load when dk0 runs
+# this script without PSModulePath, so hash with .NET directly.
+function Get-Sha256([string]$Path) {
+  $sha = [Security.Cryptography.SHA256]::Create()
+  $stream = [IO.File]::OpenRead($Path)
+  try { $bytes = $sha.ComputeHash($stream) } finally { $stream.Dispose(); $sha.Dispose() }
+  return ([BitConverter]::ToString($bytes) -replace '-', '').ToLowerInvariant()
+}
+
 try {
   # 1. One toolchain tree: rustc, then cargo, then the host and target standard
   #    libraries. rustc finds its sysroot from its own path.
@@ -77,7 +87,7 @@ try {
   foreach ($c in Get-ChildItem -Recurse -File -Path $opt['crates'] -Filter '*.crate') {
     & $tar -xzf $c.FullName -C $vendor
     if ($LASTEXITCODE -ne 0) { throw "tar failed on $($c.Name)" }
-    $sum = (Get-FileHash -Algorithm SHA256 -Path $c.FullName).Hash.ToLowerInvariant()
+    $sum = Get-Sha256 $c.FullName
     $dir = Join-Path $vendor ([IO.Path]::GetFileNameWithoutExtension($c.Name))
     [IO.File]::WriteAllText((Join-Path $dir '.cargo-checksum.json'), "{`"files`":{},`"package`":`"$sum`"}", $utf8)
   }
@@ -162,7 +172,7 @@ offline = true
   [IO.File]::WriteAllText((Join-Path $outlib 'link_flags.sexp'), '(' + ($words -join ' ') + ")`n", $utf8)
 
   $rustcver = (& $env:RUSTC --version)
-  $lockhash = (Get-FileHash -Algorithm SHA256 -Path (Join-Path $ws 'Cargo.lock')).Hash.ToLowerInvariant()
+  $lockhash = Get-Sha256 (Join-Path $ws 'Cargo.lock')
   $info = [ordered]@{
     rustc             = "$rustcver"
     slot              = $opt['targetslot']
