@@ -26,6 +26,7 @@ Ships the `CommonsLang_Rust.CargoLock.Bundle` dialog, which writes a crates bund
 
   $ run-function CommonsLang_Rust.CargoLock.Export@1.0.0 -f ${RUNTIME}/CargoLock.Export.zip
   \test(pass)
+  \dk.object(abi: "Release.Darwin_arm64", value-id: "ondtl7ksvkinkkkdehmvh35kyncjdfvwv6w22vxtuohytl2h5nkmq")\;
 
 ## Usage: a static library that uses ring
 
@@ -37,3 +38,4 @@ Its crates bundle came from the CargoLock dialog. cargo builds it offline.
   >   srcasset=CommonsLang_Rust.Apparatus.RingFixture@1.0.0 srcpath=assets/fixture/ring
   >   crates=CommonsLang_Rust.Fixture.Crates.Bundle@1.0.0 package=ringlib
   \test(pass)
+  \dk.object(abi: "Release.Darwin_x86_64", value-id: "omrlppdy6kvwrssgzq75qqzo7tuwyvbyvcsuu3nkm2cpcncicdf6a")\;
