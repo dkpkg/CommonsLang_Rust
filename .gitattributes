@@ -1,7 +1,8 @@
-dk0 text eol=lf
-dk1 text eol=lf
-*.sh text eol=lf
-*.u text eol=lf
-*.lua text eol=lf
-*.jsonc text eol=lf
-*.py text eol=lf
+# Line-ending policy. dk hashes every asset by its raw bytes, so each file
+# must check out with the same endings on every platform. A Windows runner
+# checks text out with CRLF (core.autocrlf=true), which gave the Windows legs
+# different asset values from the Linux and macOS legs, and combine then
+# published one key bound to two values. So every text file is LF; only the
+# Windows launchers, which are not assets, keep their stored CRLF.
+* text=auto eol=lf
+*.cmd -text

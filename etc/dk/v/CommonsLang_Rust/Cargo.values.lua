@@ -1,7 +1,7 @@
 -- CommonsLang_Rust.Cargo -- build a static library from a locked Cargo workspace,
 -- offline, for one target slot.
 --
---   run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.0 -d OUT
+--   run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.1 -d OUT
 --     modver=MODULE@VERSION        the object to produce
 --     srcasset=MODULE@VERSION      a workspace asset holding the Cargo workspace root
 --     srcpath=PATH                 ...and its path, as in get-asset -p PATH
@@ -35,7 +35,7 @@
 
 CommonsLang_Rust_Cargo = {
   id_module = "CommonsLang_Rust.Cargo",
-  id_version = "1.0.0",
+  id_version = "1.0.1",
   rust = "1.99.1",
   macosx = "15.0",
   coreutils = "$(get-object CommonsBase_Std.Coreutils@0.6.0 -s ${SLOTNAME.Release.execution_abi} -m ./coreutils.exe -f coreutils.exe -e '*')",
@@ -150,8 +150,8 @@ function rules.F_StaticLib(command, request)
   local private = {
     "get-object CommonsLang_Rust.Host.Form@" .. H.rust .. " -s Release.execution_abi -d host",
     "get-object CommonsLang_Rust.Std.Form@" .. H.rust .. " -s Release.target_abi -d std",
-    "get-asset CommonsLang_Rust.Apparatus.BuildStaticLibSh@1.0.0 -p assets/cargo/build-staticlib.sh -f build-staticlib.sh",
-    "get-asset CommonsLang_Rust.Apparatus.BuildStaticLibPs1@1.0.0 -p assets/cargo/build-staticlib.ps1 -f build-staticlib.ps1"
+    "get-asset CommonsLang_Rust.Apparatus.BuildStaticLibSh@1.0.1 -p assets/cargo/build-staticlib.sh -f build-staticlib.sh",
+    "get-asset CommonsLang_Rust.Apparatus.BuildStaticLibPs1@1.0.1 -p assets/cargo/build-staticlib.ps1 -f build-staticlib.ps1"
   }
   if request.user.crates then
     table.insert(private, "get-bundle " .. request.user.crates .. " -d crates")

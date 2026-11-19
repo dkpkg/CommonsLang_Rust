@@ -29,9 +29,9 @@ Ships the `CommonsLang_Rust.CargoLock.Bundle` dialog, which writes a crates bund
 `assets/fixture/ring` is a Cargo workspace whose `ringlib` crate calls ring's SHA-256.
 Its crates bundle came from the CargoLock dialog. cargo builds it offline.
 
-  $ run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.0 -d ${RUNTIME}/ringlib
+  $ run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.1 -d ${RUNTIME}/ringlib
   >   modver=CommonsLang_Rust.Fixture.RingLib@1.0.0
-  >   srcasset=CommonsLang_Rust.Apparatus.RingFixture@1.0.0 srcpath=assets/fixture/ring
+  >   srcasset=CommonsLang_Rust.Apparatus.RingFixture@1.0.1 srcpath=assets/fixture/ring
   >   crates=CommonsLang_Rust.Fixture.Crates.Bundle@1.0.0 package=ringlib
   \test(pass)
   \dk.object(abi: "Release.Windows_x86_64", value-id: "op37o4wpblrxi5oerfvz6exdvsoy3od6hfpy7fpooe3s3qsvfctxa")\;

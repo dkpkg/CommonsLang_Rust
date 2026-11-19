@@ -30,7 +30,7 @@ It supports six target slots: `Darwin_arm64`, `Darwin_x86_64`, `Linux_x86_64`,
 2. Build the static library for a slot:
 
    ```sh
-   ./dk0 run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.0 -d target/mylib \
+   ./dk0 run-function CommonsLang_Rust.Cargo.F_StaticLib@1.0.1 -d target/mylib \
      modver=MyLib.Rust@1.0.0 srcasset=MyLib.Apparatus.RustWorkspace@1.0.0 \
      srcpath=rust crates=MyLib.Crates.Bundle@1.0.0 package=my-lib
    ```
@@ -85,13 +85,13 @@ object keeps the upstream `COPYRIGHT` and `LICENSE-*` files.
 
 ## Assets
 
-### CommonsLang_Rust.Apparatus@1.0.0
+### CommonsLang_Rust.Apparatus@1.0.1
 
   % unified.asset { name="BuildStaticLibSh", file="assets/cargo/build-staticlib.sh" }
   \dk.asset(byteSize: "8066", checksum: (sha256: "454884dc63b7f00758592e01eac0c246df003659a0886b7b1834985a176f3b32"))\;
 
   % unified.asset { name="BuildStaticLibPs1", file="assets/cargo/build-staticlib.ps1" }
-  \dk.asset(byteSize: "9034", checksum: (sha256: "0aff524c9f868e7cb7e595a85d78939fcb1ddef867821454cb5fb6ec4b5e3f69"))\;
+  \dk.asset(byteSize: "9889", checksum: (sha256: "afc9f18d988cfd0e3ea92557c42694a212c9dc535439000d90824dfddfeb0e1f"))\;
 
   % unified.asset { name="RingFixture", dir="assets/fixture/ring" }
   \dk.asset(byteSize: "2595", checksum: (sha256: "875cc143f6775c7834b038b2ddaf813e251525abbb2ab9c3217ae1106a6e6404"))\;
