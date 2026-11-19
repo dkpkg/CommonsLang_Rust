@@ -442,10 +442,13 @@ end
 function rules.Files(command, request)
   if command == "declareoutput" then
     local slot = assert(request.user.slot, "please provide `slot=SLOT`")
+    -- executionslot=Release.execution_abi asks the engine to resolve the slot from the host, so a
+    -- cross leg that builds its own toolchain withholds it from its release: the native leg of the
+    -- host publishes it, under the one value id that a native build gives it.
     return { declareoutput = { return_objects = {
       id = CommonsLang_Rust_Std.form_output_id(),
       slots = CommonsLang_Rust_Std.SLOTS,
-      execution_slot = slot } } }
+      execution_slot = request.user.executionslot or slot } } }
   elseif command == "submit" then
     local slot = assert(request.user.slot, "please provide `slot=SLOT`")
     local precommands, outputs = CommonsLang_Rust_Std.form_values(slot)

@@ -10,6 +10,7 @@ static library that uses ring's C and assembly. It runs on a `Darwin_arm64` host
   \dk.object(abi: "Release.Darwin_x86_64", value-id: "oqkhd5rf44sgh4o5ktqwgesgs4unvavpkuhsmmiw4oicj77dfltva")\;
 
   $ run-function CommonsLang_Rust.Host.Files@1.99.1 -d ${RUNTIME}/host-Darwin_arm64 slot=Release.Darwin_arm64
+  >   executionslot=Release.execution_abi
   \test(pass)
   \dk.object(abi: "Release.Darwin_arm64", value-id: "oc4cz5ejicnhx3altlg5taeiahodfd62dolvs26ulvkjzcalw77vq")\;
 

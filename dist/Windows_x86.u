@@ -6,6 +6,7 @@ static library that uses ring's C and assembly. It runs on a `Windows_x86_64` ho
 ## rustc, cargo and the host standard library
 
   $ run-function CommonsLang_Rust.Host.Files@1.99.1 -d ${RUNTIME}/host-Windows_x86_64 slot=Release.Windows_x86_64
+  >   executionslot=Release.execution_abi
   \test(pass)
   \dk.object(abi: "Release.Windows_x86_64", value-id: "oa4vlifayugzk3zzmveockcakjrozedai2olrvkpoewhf7e6kco2a")\;
 

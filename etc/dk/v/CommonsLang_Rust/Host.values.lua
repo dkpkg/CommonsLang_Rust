@@ -3,6 +3,9 @@
 --
 --   run-function CommonsLang_Rust.Host.Files@1.99.1 -d OUT slot=Release.Darwin_arm64
 --
+-- A cross leg builds the toolchain of its host with executionslot=Release.execution_abi as well,
+-- so the slot comes from the execution ABI and the leg does not publish a second value of it.
+--
 -- The object has three directories, one per upstream tarball, each keeping the
 -- tarball's own top directory:
 --   rustc/rustc-1.99.1-<triple>/rustc/{bin,lib}
@@ -442,10 +445,13 @@ end
 function rules.Files(command, request)
   if command == "declareoutput" then
     local slot = assert(request.user.slot, "please provide `slot=SLOT`")
+    -- executionslot=Release.execution_abi asks the engine to resolve the slot from the host, so a
+    -- cross leg that builds its own toolchain withholds it from its release: the native leg of the
+    -- host publishes it, under the one value id that a native build gives it.
     return { declareoutput = { return_objects = {
       id = CommonsLang_Rust_Host.form_output_id(),
       slots = CommonsLang_Rust_Host.SLOTS,
-      execution_slot = slot } } }
+      execution_slot = request.user.executionslot or slot } } }
   elseif command == "submit" then
     local slot = assert(request.user.slot, "please provide `slot=SLOT`")
     local precommands, outputs = CommonsLang_Rust_Host.form_values(slot)
